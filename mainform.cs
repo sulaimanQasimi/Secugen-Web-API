@@ -96,7 +96,9 @@ namespace sgdm
       private ComboBox comboBoxComPorts;
       private Button OpenSdaBtn;
       private System.Windows.Forms.Label StatusBar;
-      
+      private System.Windows.Forms.Button StartApiServerBtn;
+      private System.Windows.Forms.Button StopApiServerBtn;
+      private SimpleFingerprintApiServer apiServer;
 
       public MainForm()
       {
@@ -191,6 +193,8 @@ namespace sgdm
             this.OpenSdaBtn = new System.Windows.Forms.Button();
             this.comboBoxComPorts = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.StartApiServerBtn = new System.Windows.Forms.Button();
+            this.StopApiServerBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GroupBoxBrightness.SuspendLayout();
@@ -921,6 +925,30 @@ namespace sgdm
             this.label2.TabIndex = 0;
             this.label2.Text = "Port";
             // 
+            // StartApiServerBtn
+            // 
+            this.StartApiServerBtn.BackColor = System.Drawing.Color.Green;
+            this.StartApiServerBtn.ForeColor = System.Drawing.Color.White;
+            this.StartApiServerBtn.Location = new System.Drawing.Point(520, 2);
+            this.StartApiServerBtn.Name = "StartApiServerBtn";
+            this.StartApiServerBtn.Size = new System.Drawing.Size(100, 30);
+            this.StartApiServerBtn.TabIndex = 15;
+            this.StartApiServerBtn.Text = "Start API Server";
+            this.StartApiServerBtn.UseVisualStyleBackColor = false;
+            this.StartApiServerBtn.Click += new System.EventHandler(this.StartApiServerBtn_Click);
+            // 
+            // StopApiServerBtn
+            // 
+            this.StopApiServerBtn.BackColor = System.Drawing.Color.Red;
+            this.StopApiServerBtn.ForeColor = System.Drawing.Color.White;
+            this.StopApiServerBtn.Location = new System.Drawing.Point(626, 2);
+            this.StopApiServerBtn.Name = "StopApiServerBtn";
+            this.StopApiServerBtn.Size = new System.Drawing.Size(100, 30);
+            this.StopApiServerBtn.TabIndex = 16;
+            this.StopApiServerBtn.Text = "Stop API Server";
+            this.StopApiServerBtn.UseVisualStyleBackColor = false;
+            this.StopApiServerBtn.Click += new System.EventHandler(this.StopApiServerBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
@@ -929,6 +957,8 @@ namespace sgdm
             this.Controls.Add(this.groupBoxUsbDevs);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.StatusBar);
+            this.Controls.Add(this.StartApiServerBtn);
+            this.Controls.Add(this.StopApiServerBtn);
             this.Name = "MainForm";
             this.Text = "Matching C# Sample";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -1574,6 +1604,48 @@ namespace sgdm
 
          text = funcName + " Error # " + iError + " :" + text; 
          StatusBar.Text = text;
+      }
+
+      ///////////////////////
+      /// Start API Server
+      private async void StartApiServerBtn_Click(object sender, System.EventArgs e)
+      {
+         try
+         {
+            if (apiServer == null)
+            {
+               apiServer = new SimpleFingerprintApiServer("http://localhost:8080");
+               await apiServer.StartAsync();
+               StatusBar.Text = "API Server started at http://localhost:8080";
+               StartApiServerBtn.Enabled = false;
+               StopApiServerBtn.Enabled = true;
+            }
+         }
+         catch (Exception ex)
+         {
+            StatusBar.Text = "Failed to start API Server: " + ex.Message;
+         }
+      }
+
+      ///////////////////////
+      /// Stop API Server
+      private void StopApiServerBtn_Click(object sender, System.EventArgs e)
+      {
+         try
+         {
+            if (apiServer != null)
+            {
+               apiServer.Stop();
+               apiServer = null;
+               StatusBar.Text = "API Server stopped";
+               StartApiServerBtn.Enabled = true;
+               StopApiServerBtn.Enabled = false;
+            }
+         }
+         catch (Exception ex)
+         {
+            StatusBar.Text = "Failed to stop API Server: " + ex.Message;
+         }
       }
     }
 }

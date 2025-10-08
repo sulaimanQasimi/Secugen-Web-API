@@ -224,7 +224,7 @@ namespace sgdm
          {
             if (groupBox == null) continue;
             
-            groupBox.Font = new Font("Segoe UI", 10F, FontStyle.Medium);
+            groupBox.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             groupBox.ForeColor = Color.FromArgb(66, 66, 66); // Material Design text color
             groupBox.BackColor = Color.FromArgb(250, 250, 250); // Light background
          }
@@ -301,7 +301,7 @@ namespace sgdm
          // Style tab control with Material Design
          if (tabControl1 != null)
          {
-            tabControl1.Font = new Font("Segoe UI", 10F, FontStyle.Medium);
+            tabControl1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             tabControl1.BackColor = Color.White;
             tabControl1.ForeColor = Color.FromArgb(66, 66, 66);
          }
@@ -325,14 +325,14 @@ namespace sgdm
          {
             if (label == null) continue;
             
-            label.Font = new Font("Segoe UI", 9F, FontStyle.Medium);
+            label.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
             label.ForeColor = Color.FromArgb(66, 66, 66);
          }
          
          // Style status bar with enhanced Material Design
          if (StatusBar != null)
          {
-            StatusBar.Font = new Font("Segoe UI", 10F, FontStyle.Medium);
+            StatusBar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             StatusBar.ForeColor = Color.FromArgb(33, 150, 243);
          }
       }

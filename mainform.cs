@@ -131,9 +131,7 @@ namespace sgdm
                Primary.Blue700,      // Primary color dark
                Primary.Blue600,      // Primary color light
                Accent.Blue400,       // Accent color
-               TextShade.WHITE,      // Text color primary
-               TextShade.WHITE,      // Text color secondary
-               TextShade.BLACK       // Text color disabled
+               TextShade.WHITE       // Text color primary
             );
             
             // Set theme to Light for better contrast

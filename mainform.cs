@@ -1238,7 +1238,7 @@ namespace sgdm
             // logoPictureBox
             // 
             this.logoPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.logoPictureBox.Location = new System.Drawing.Point(12, 8);
+            this.logoPictureBox.Location = new System.Drawing.Point(20, 20);
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.Size = new System.Drawing.Size(40, 40);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1345,15 +1345,15 @@ namespace sgdm
       }
 
       ///////////////////////
-      /// Set the fingerprint icon in the header
+      /// Set the Ministry of Defense Afghanistan icon in the header
       private void SetFingerprintIcon()
       {
          try
          {
             if (logoPictureBox != null)
             {
-               // Use the fingerprint icon from Resources
-               logoPictureBox.Image = sgdm.Properties.Resources.fingerprint_icon;
+               // Create Ministry of Defense Afghanistan icon
+               logoPictureBox.Image = CreateMinistryOfDefenseIcon();
                logoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             }
          }
@@ -1362,6 +1362,68 @@ namespace sgdm
             // If icon loading fails, create a simple fallback icon
             CreateFallbackIcon();
          }
+      }
+
+      ///////////////////////
+      /// Create Ministry of Defense Afghanistan icon
+      private Bitmap CreateMinistryOfDefenseIcon()
+      {
+         Bitmap icon = new Bitmap(40, 40);
+         using (Graphics g = Graphics.FromImage(icon))
+         {
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            
+            // Dark background for military theme
+            g.FillRectangle(new SolidBrush(Color.FromArgb(25, 25, 35)), 0, 0, 40, 40);
+            
+            // Ministry of Defense Afghanistan emblem
+            using (Pen emblemPen = new Pen(Color.FromArgb(255, 193, 7), 2))
+            {
+               // Outer circle (shield border)
+               g.DrawEllipse(emblemPen, 4, 4, 32, 32);
+               
+               // Inner elements
+               using (Pen innerPen = new Pen(Color.FromArgb(255, 193, 7), 1.5f))
+               {
+                  // Central star (8-pointed)
+                  Point[] starPoints = {
+                     new Point(20, 8),   // Top
+                     new Point(24, 16),  // Top-right
+                     new Point(32, 16),  // Right
+                     new Point(26, 22),  // Bottom-right
+                     new Point(28, 30),  // Bottom
+                     new Point(20, 26),  // Bottom-left
+                     new Point(12, 30),  // Left
+                     new Point(14, 22),  // Top-left
+                     new Point(8, 16),   // Left
+                     new Point(16, 16)   // Top-left
+                  };
+                  g.DrawPolygon(innerPen, starPoints);
+                  
+                  // Afghan flag colors representation
+                  using (Brush redBrush = new SolidBrush(Color.FromArgb(220, 20, 60)))
+                  using (Brush greenBrush = new SolidBrush(Color.FromArgb(0, 100, 0)))
+                  using (Brush blackBrush = new SolidBrush(Color.FromArgb(0, 0, 0)))
+                  {
+                     // Small flag representation
+                     g.FillRectangle(redBrush, 6, 6, 28, 3);
+                     g.FillRectangle(blackBrush, 6, 9, 28, 3);
+                     g.FillRectangle(greenBrush, 6, 12, 28, 3);
+                  }
+                  
+                  // Military elements
+                  g.DrawLine(innerPen, 12, 18, 28, 18); // Horizontal line
+                  g.DrawLine(innerPen, 20, 12, 20, 24); // Vertical line
+                  
+                  // Corner decorations
+                  g.DrawArc(innerPen, 2, 2, 8, 8, 0, 90);
+                  g.DrawArc(innerPen, 30, 2, 8, 8, 0, 90);
+                  g.DrawArc(innerPen, 2, 30, 8, 8, 180, 90);
+                  g.DrawArc(innerPen, 30, 30, 8, 8, 270, 90);
+               }
+            }
+         }
+         return icon;
       }
 
       ///////////////////////
@@ -1380,13 +1442,19 @@ namespace sgdm
                   // Dark background
                   g.FillRectangle(new SolidBrush(Color.FromArgb(25, 25, 35)), 0, 0, 40, 40);
                   
-                  // Simple fingerprint symbol
-                  using (Pen pen = new Pen(Color.FromArgb(255, 193, 7), 3))
+                  // Simple Ministry of Defense symbol
+                  using (Pen pen = new Pen(Color.FromArgb(255, 193, 7), 2))
                   {
-                     // Draw a simple fingerprint pattern
+                     // Draw a simple shield with star
                      g.DrawEllipse(pen, 8, 8, 24, 24);
-                     g.DrawEllipse(pen, 12, 12, 16, 16);
-                     g.DrawEllipse(pen, 16, 16, 8, 8);
+                     
+                     // Central star
+                     Point[] starPoints = {
+                        new Point(20, 12), new Point(24, 20), new Point(32, 20),
+                        new Point(26, 26), new Point(28, 34), new Point(20, 30),
+                        new Point(12, 34), new Point(14, 26), new Point(8, 20), new Point(16, 20)
+                     };
+                     g.DrawPolygon(pen, starPoints);
                   }
                }
                logoPictureBox.Image = fallbackIcon;

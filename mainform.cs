@@ -1337,8 +1337,70 @@ namespace sgdm
 
          EnableButtons(false);
 
+         // Set the fingerprint icon
+         SetFingerprintIcon();
+
          m_FPM = new SGFingerPrintManager();
          EnumerateBtn_Click(sender, e);
+      }
+
+      ///////////////////////
+      /// Set the fingerprint icon in the header
+      private void SetFingerprintIcon()
+      {
+         try
+         {
+            if (logoPictureBox != null)
+            {
+               // Use the fingerprint icon from Resources
+               logoPictureBox.Image = sgdm.Properties.Resources.fingerprint_icon;
+               logoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+         }
+         catch (Exception ex)
+         {
+            // If icon loading fails, create a simple fallback icon
+            CreateFallbackIcon();
+         }
+      }
+
+      ///////////////////////
+      /// Create a fallback icon if the main icon fails to load
+      private void CreateFallbackIcon()
+      {
+         try
+         {
+            if (logoPictureBox != null)
+            {
+               Bitmap fallbackIcon = new Bitmap(40, 40);
+               using (Graphics g = Graphics.FromImage(fallbackIcon))
+               {
+                  g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                  
+                  // Dark background
+                  g.FillRectangle(new SolidBrush(Color.FromArgb(25, 25, 35)), 0, 0, 40, 40);
+                  
+                  // Simple fingerprint symbol
+                  using (Pen pen = new Pen(Color.FromArgb(255, 193, 7), 3))
+                  {
+                     // Draw a simple fingerprint pattern
+                     g.DrawEllipse(pen, 8, 8, 24, 24);
+                     g.DrawEllipse(pen, 12, 12, 16, 16);
+                     g.DrawEllipse(pen, 16, 16, 8, 8);
+                  }
+               }
+               logoPictureBox.Image = fallbackIcon;
+               logoPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+         }
+         catch
+         {
+            // If all else fails, just set a solid color background
+            if (logoPictureBox != null)
+            {
+               logoPictureBox.BackColor = Color.FromArgb(25, 25, 35);
+            }
+         }
       }
 
       ///////////////////////

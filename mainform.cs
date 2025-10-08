@@ -121,12 +121,29 @@ namespace sgdm
       {
          try
          {
-            // Initialize MaterialSkin theme
+            // Initialize MaterialSkin theme with enhanced configuration
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             
-            // Apply modern styling to controls
-            ApplyModernControlStyling();
+            // Configure Material Design color scheme
+            materialSkinManager.ColorScheme = new ColorScheme(
+               Primary.Blue600,      // Primary color
+               Primary.Blue700,      // Primary color dark
+               Primary.Blue600,      // Primary color light
+               Accent.Blue400,       // Accent color
+               TextShade.WHITE,      // Text color primary
+               TextShade.WHITE,      // Text color secondary
+               TextShade.BLACK       // Text color disabled
+            );
+            
+            // Set theme to Light for better contrast
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            
+            // Apply enhanced styling to controls
+            ApplyEnhancedControlStyling();
+            
+            // Apply Material Design layout improvements
+            ApplyMaterialLayoutStyling();
          }
          catch
          {
@@ -136,29 +153,38 @@ namespace sgdm
       }
 
       /// <summary>
-      /// Apply modern styling to controls using MaterialSkin
+      /// Apply enhanced styling to controls using MaterialSkin
       /// </summary>
-      private void ApplyModernControlStyling()
+      private void ApplyEnhancedControlStyling()
       {
-         // Style buttons with MaterialSkin
-         StyleButtonWithMaterialSkin(BtnCapture1);
-         StyleButtonWithMaterialSkin(BtnCapture2);
-         StyleButtonWithMaterialSkin(BtnCapture3);
-         StyleButtonWithMaterialSkin(BtnRegister);
-         StyleButtonWithMaterialSkin(BtnVerify);
-         StyleButtonWithMaterialSkin(GetImageBtn);
-         StyleButtonWithMaterialSkin(GetLiveImageBtn);
-         StyleButtonWithMaterialSkin(OpenDeviceBtn);
-         StyleButtonWithMaterialSkin(EnumerateBtn);
-         StyleButtonWithMaterialSkin(OpenSdaBtn);
-         StyleButtonWithMaterialSkin(StartApiServerBtn);
-         StyleButtonWithMaterialSkin(StopApiServerBtn);
+         // Style buttons with enhanced MaterialSkin
+         StyleButtonWithEnhancedMaterialSkin(BtnCapture1);
+         StyleButtonWithEnhancedMaterialSkin(BtnCapture2);
+         StyleButtonWithEnhancedMaterialSkin(BtnCapture3);
+         StyleButtonWithEnhancedMaterialSkin(BtnRegister);
+         StyleButtonWithEnhancedMaterialSkin(BtnVerify);
+         StyleButtonWithEnhancedMaterialSkin(GetImageBtn);
+         StyleButtonWithEnhancedMaterialSkin(GetLiveImageBtn);
+         StyleButtonWithEnhancedMaterialSkin(OpenDeviceBtn);
+         StyleButtonWithEnhancedMaterialSkin(EnumerateBtn);
+         StyleButtonWithEnhancedMaterialSkin(OpenSdaBtn);
+         StyleButtonWithEnhancedMaterialSkin(StartApiServerBtn);
+         StyleButtonWithEnhancedMaterialSkin(StopApiServerBtn);
+         StyleButtonWithEnhancedMaterialSkin(GetBtn);
+         StyleButtonWithEnhancedMaterialSkin(ConfigBtn);
+         StyleButtonWithEnhancedMaterialSkin(SetBrightnessBtn);
+         
+         // Style other controls
+         StyleGroupBoxesWithMaterialSkin();
+         StyleTextBoxesWithMaterialSkin();
+         StyleComboBoxesWithMaterialSkin();
+         StyleProgressBarsWithMaterialSkin();
       }
 
       /// <summary>
-      /// Style a button with MaterialSkin properties
+      /// Style a button with enhanced MaterialSkin properties
       /// </summary>
-      private void StyleButtonWithMaterialSkin(Button button)
+      private void StyleButtonWithEnhancedMaterialSkin(Button button)
       {
          if (button == null) return;
          
@@ -167,13 +193,150 @@ namespace sgdm
          button.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
          button.Cursor = Cursors.Hand;
          
-         // Apply Material Design colors
+         // Apply enhanced Material Design colors and effects
          button.BackColor = Color.FromArgb(33, 150, 243); // Primary Blue
          button.ForeColor = Color.White;
          button.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 118, 210); // Darker Blue
-         button.FlatAppearance.MouseDownBackColor = Color.FromArgb(25, 118, 210);
+         button.FlatAppearance.MouseDownBackColor = Color.FromArgb(21, 101, 192); // Even darker
+         button.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+         
+         // Add subtle shadow effect
+         button.FlatAppearance.CheckedBackColor = Color.FromArgb(25, 118, 210);
+         
+         // Set minimum size for better touch targets
+         if (button.Size.Width < 80)
+            button.Size = new Size(80, button.Size.Height);
+         if (button.Size.Height < 32)
+            button.Size = new Size(button.Size.Width, 32);
+      }
+      
+      /// <summary>
+      /// Style group boxes with MaterialSkin properties
+      /// </summary>
+      private void StyleGroupBoxesWithMaterialSkin()
+      {
+         var groupBoxes = new GroupBox[] { 
+            groupBox1, groupBox2, groupBox3, groupBox4, groupBox6, 
+            groupBoxUsbDevs, groupBoxSda, GroupBoxBrightness 
+         };
+         
+         foreach (var groupBox in groupBoxes)
+         {
+            if (groupBox == null) continue;
+            
+            groupBox.Font = new Font("Segoe UI", 10F, FontStyle.Medium);
+            groupBox.ForeColor = Color.FromArgb(66, 66, 66); // Material Design text color
+            groupBox.BackColor = Color.FromArgb(250, 250, 250); // Light background
+         }
+      }
+      
+      /// <summary>
+      /// Style text boxes with MaterialSkin properties
+      /// </summary>
+      private void StyleTextBoxesWithMaterialSkin()
+      {
+         var textBoxes = new TextBox[] {
+            textDeviceID, textSerialNum, textImageWidth, textImageHeight, textImageDPI,
+            textFWVersion, textBrightness, textGain, textContrast, textImgQuality, textTimeout
+         };
+         
+         foreach (var textBox in textBoxes)
+         {
+            if (textBox == null) continue;
+            
+            textBox.Font = new Font("Segoe UI", 9F);
+            textBox.BackColor = Color.White;
+            textBox.ForeColor = Color.FromArgb(66, 66, 66);
+            textBox.BorderStyle = BorderStyle.FixedSingle;
+         }
+      }
+      
+      /// <summary>
+      /// Style combo boxes with MaterialSkin properties
+      /// </summary>
+      private void StyleComboBoxesWithMaterialSkin()
+      {
+         var comboBoxes = new ComboBox[] {
+            comboBoxDeviceName, comboBoxComPorts, comboBoxSecuLevel_R, 
+            comboBoxSecuLevel_V, comboBox1
+         };
+         
+         foreach (var comboBox in comboBoxes)
+         {
+            if (comboBox == null) continue;
+            
+            comboBox.Font = new Font("Segoe UI", 9F);
+            comboBox.BackColor = Color.White;
+            comboBox.ForeColor = Color.FromArgb(66, 66, 66);
+            comboBox.FlatStyle = FlatStyle.Flat;
+         }
+      }
+      
+      /// <summary>
+      /// Style progress bars with MaterialSkin properties
+      /// </summary>
+      private void StyleProgressBarsWithMaterialSkin()
+      {
+         var progressBars = new ProgressBar[] {
+            progressBar_R1, progressBar_R2, progressBar_V1
+         };
+         
+         foreach (var progressBar in progressBars)
+         {
+            if (progressBar == null) continue;
+            
+            progressBar.Style = ProgressBarStyle.Continuous;
+            progressBar.ForeColor = Color.FromArgb(33, 150, 243); // Primary blue
+         }
       }
 
+      /// <summary>
+      /// Apply Material Design layout improvements
+      /// </summary>
+      private void ApplyMaterialLayoutStyling()
+      {
+         // Enhance form background
+         this.BackColor = Color.FromArgb(250, 250, 250);
+         
+         // Style tab control with Material Design
+         if (tabControl1 != null)
+         {
+            tabControl1.Font = new Font("Segoe UI", 10F, FontStyle.Medium);
+            tabControl1.BackColor = Color.White;
+            tabControl1.ForeColor = Color.FromArgb(66, 66, 66);
+         }
+         
+         // Style picture boxes with Material Design borders
+         var pictureBoxes = new PictureBox[] { pictureBox1, pictureBoxR1, pictureBoxR2, pictureBoxV1 };
+         foreach (var pictureBox in pictureBoxes)
+         {
+            if (pictureBox == null) continue;
+            
+            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox.BackColor = Color.FromArgb(245, 245, 245);
+         }
+         
+         // Style labels with Material Design typography
+         var labels = new Label[] { 
+            label1, label2, label4, label5, label6, label7, label8, label9, 
+            label10, label11, label12, label13, label14, label15, label16 
+         };
+         foreach (var label in labels)
+         {
+            if (label == null) continue;
+            
+            label.Font = new Font("Segoe UI", 9F, FontStyle.Medium);
+            label.ForeColor = Color.FromArgb(66, 66, 66);
+         }
+         
+         // Style status bar with enhanced Material Design
+         if (StatusBar != null)
+         {
+            StatusBar.Font = new Font("Segoe UI", 10F, FontStyle.Medium);
+            StatusBar.ForeColor = Color.FromArgb(33, 150, 243);
+         }
+      }
+      
       /// <summary>
       /// Apply fallback styling if MaterialSkin is not available
       /// </summary>
@@ -183,14 +346,17 @@ namespace sgdm
          this.BackColor = Color.FromArgb(250, 250, 250);
          this.Font = new Font("Segoe UI", 9F);
          
-         // Style all buttons
+         // Style all buttons with enhanced fallback
          foreach (Control control in this.Controls)
          {
             if (control is Button button)
             {
-               StyleButtonWithMaterialSkin(button);
+               StyleButtonWithEnhancedMaterialSkin(button);
             }
          }
+         
+         // Apply layout styling even in fallback mode
+         ApplyMaterialLayoutStyling();
       }
 
       /// <summary>

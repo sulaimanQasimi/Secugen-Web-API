@@ -184,6 +184,8 @@
     </Reference>
     <Reference Include="MaterialSkin, Version=0.2.1.0, Culture=neutral, PublicKeyToken=null, processorArchitecture=MSIL">
       <HintPath>packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +206,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Resources\fingerprint_icon.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MaterialSkinCompatibility.cs">
       <SubType>Code</SubType>
     </Compile>
     <EmbeddedResource Include="mainform.resx">
@@ -235,7 +234,6 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll" "$(TargetDir)" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

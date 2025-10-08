@@ -7,13 +7,15 @@ using System.Data;
 using System.Text;
 using SecuGen.FDxSDKPro.Windows;
 using System.Runtime.InteropServices;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace sgdm
 {
 	/// <summary>
 	/// Summary description for Form1.
 	/// </summary>
-   public class MainForm : System.Windows.Forms.Form
+   public class MainForm : MaterialForm
    {
       /// <summary>
       /// Required designer variable.
@@ -36,9 +38,9 @@ namespace sgdm
       private System.Windows.Forms.PictureBox pictureBox1;
       private System.Windows.Forms.GroupBox groupBox1;
       private System.Windows.Forms.GroupBox groupBox2;
-      private System.Windows.Forms.Button BtnCapture1;
-      private System.Windows.Forms.Button BtnCapture2;
-      private System.Windows.Forms.Button BtnCapture3;
+      private MaterialButton BtnCapture1;
+      private MaterialButton BtnCapture2;
+      private MaterialButton BtnCapture3;
       private System.Windows.Forms.PictureBox pictureBoxR2;
       private System.Windows.Forms.PictureBox pictureBoxV1;
       private System.Windows.Forms.PictureBox pictureBoxR1;
@@ -76,27 +78,27 @@ namespace sgdm
       private System.Windows.Forms.Label label15;
       private System.Windows.Forms.Label label16;
       private System.Windows.Forms.TextBox textTimeout;
-      private System.Windows.Forms.Button BtnRegister;
-      private System.Windows.Forms.Button BtnVerify;
+      private MaterialButton BtnRegister;
+      private MaterialButton BtnVerify;
       internal System.Windows.Forms.GroupBox GroupBoxBrightness;
       internal System.Windows.Forms.Button SetBrightnessBtn;
       private System.Windows.Forms.TextBox textFWVersion;
-      private System.Windows.Forms.Button GetLiveImageBtn;
-      private System.Windows.Forms.Button GetImageBtn;
+      private MaterialButton GetLiveImageBtn;
+      private MaterialButton GetImageBtn;
       internal System.Windows.Forms.NumericUpDown BrightnessUpDown;
       private System.Windows.Forms.CheckBox CheckBoxAutoOn;
       private GroupBox groupBoxUsbDevs;
-      private Button OpenDeviceBtn;
-      private Button EnumerateBtn;
+      private MaterialButton OpenDeviceBtn;
+      private MaterialButton EnumerateBtn;
       private Label label1;
       private ComboBox comboBoxDeviceName;
       private GroupBox groupBoxSda;
       private Label label2;
       private ComboBox comboBoxComPorts;
-      private Button OpenSdaBtn;
+      private MaterialButton OpenSdaBtn;
       private System.Windows.Forms.Label StatusBar;
-      private System.Windows.Forms.Button StartApiServerBtn;
-      private System.Windows.Forms.Button StopApiServerBtn;
+      private MaterialButton StartApiServerBtn;
+      private MaterialButton StopApiServerBtn;
       private System.Windows.Forms.Panel headerPanel;
       private System.Windows.Forms.Label titleLabel;
       private System.Windows.Forms.Panel statusPanel;
@@ -107,6 +109,12 @@ namespace sgdm
       public MainForm()
       {
          InitializeComponent();
+         
+         // Initialize MaterialSkin theme
+         var materialSkinManager = MaterialSkinManager.Instance;
+         materialSkinManager.AddFormToManage(this);
+         materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+         materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
       }
 
       /// <summary>
@@ -144,12 +152,12 @@ namespace sgdm
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.textImgQuality = new System.Windows.Forms.TextBox();
-            this.GetLiveImageBtn = new System.Windows.Forms.Button();
-            this.GetImageBtn = new System.Windows.Forms.Button();
+            this.GetLiveImageBtn = new MaterialButton();
+            this.GetImageBtn = new MaterialButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.BtnVerify = new System.Windows.Forms.Button();
-            this.BtnRegister = new System.Windows.Forms.Button();
+            this.BtnVerify = new MaterialButton();
+            this.BtnRegister = new MaterialButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.comboBoxSecuLevel_V = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -158,15 +166,15 @@ namespace sgdm
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.progressBar_V1 = new System.Windows.Forms.ProgressBar();
             this.pictureBoxV1 = new System.Windows.Forms.PictureBox();
-            this.BtnCapture3 = new System.Windows.Forms.Button();
+            this.BtnCapture3 = new MaterialButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.progressBar_R2 = new System.Windows.Forms.ProgressBar();
             this.progressBar_R1 = new System.Windows.Forms.ProgressBar();
             this.pictureBoxR2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxR1 = new System.Windows.Forms.PictureBox();
-            this.BtnCapture1 = new System.Windows.Forms.Button();
-            this.BtnCapture2 = new System.Windows.Forms.Button();
+            this.BtnCapture1 = new MaterialButton();
+            this.BtnCapture2 = new MaterialButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GetBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -190,16 +198,16 @@ namespace sgdm
             this.label13 = new System.Windows.Forms.Label();
             this.StatusBar = new System.Windows.Forms.Label();
             this.groupBoxUsbDevs = new System.Windows.Forms.GroupBox();
-            this.OpenDeviceBtn = new System.Windows.Forms.Button();
-            this.EnumerateBtn = new System.Windows.Forms.Button();
+            this.OpenDeviceBtn = new MaterialButton();
+            this.EnumerateBtn = new MaterialButton();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxDeviceName = new System.Windows.Forms.ComboBox();
             this.groupBoxSda = new System.Windows.Forms.GroupBox();
-            this.OpenSdaBtn = new System.Windows.Forms.Button();
+            this.OpenSdaBtn = new MaterialButton();
             this.comboBoxComPorts = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.StartApiServerBtn = new System.Windows.Forms.Button();
-            this.StopApiServerBtn = new System.Windows.Forms.Button();
+            this.StartApiServerBtn = new MaterialButton();
+            this.StopApiServerBtn = new MaterialButton();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
@@ -408,27 +416,44 @@ namespace sgdm
             // 
             // BtnVerify
             // 
-            this.BtnVerify.BackColor = System.Drawing.SystemColors.Desktop;
-            this.BtnVerify.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.BtnVerify.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnVerify.AutoSize = false;
+            this.BtnVerify.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnVerify.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BtnVerify.Depth = 0;
+            this.BtnVerify.HighEmphasis = true;
+            this.BtnVerify.Icon = null;
             this.BtnVerify.Location = new System.Drawing.Point(280, 308);
+            this.BtnVerify.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BtnVerify.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnVerify.Name = "BtnVerify";
-            this.BtnVerify.Size = new System.Drawing.Size(108, 23);
+            this.BtnVerify.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BtnVerify.Size = new System.Drawing.Size(108, 36);
             this.BtnVerify.TabIndex = 34;
             this.BtnVerify.Text = "Verify";
-            this.BtnVerify.UseVisualStyleBackColor = false;
+            this.BtnVerify.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BtnVerify.UseAccentColor = true;
+            this.BtnVerify.UseVisualStyleBackColor = true;
             this.BtnVerify.Click += new System.EventHandler(this.BtnVerify_Click);
             // 
             // BtnRegister
             // 
-            this.BtnRegister.BackColor = System.Drawing.SystemColors.Desktop;
-            this.BtnRegister.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.BtnRegister.AutoSize = false;
+            this.BtnRegister.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnRegister.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BtnRegister.Depth = 0;
+            this.BtnRegister.HighEmphasis = true;
+            this.BtnRegister.Icon = null;
             this.BtnRegister.Location = new System.Drawing.Point(52, 308);
+            this.BtnRegister.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BtnRegister.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(131, 23);
+            this.BtnRegister.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BtnRegister.Size = new System.Drawing.Size(131, 36);
             this.BtnRegister.TabIndex = 33;
             this.BtnRegister.Text = "Register";
-            this.BtnRegister.UseVisualStyleBackColor = false;
+            this.BtnRegister.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BtnRegister.UseAccentColor = false;
+            this.BtnRegister.UseVisualStyleBackColor = true;
             this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
             // groupBox6
@@ -610,24 +635,44 @@ namespace sgdm
             // 
             // BtnCapture1
             // 
-            this.BtnCapture1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BtnCapture1.AutoSize = false;
+            this.BtnCapture1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnCapture1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BtnCapture1.Depth = 0;
+            this.BtnCapture1.HighEmphasis = true;
+            this.BtnCapture1.Icon = null;
             this.BtnCapture1.Location = new System.Drawing.Point(8, 176);
+            this.BtnCapture1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BtnCapture1.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnCapture1.Name = "BtnCapture1";
-            this.BtnCapture1.Size = new System.Drawing.Size(104, 23);
+            this.BtnCapture1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BtnCapture1.Size = new System.Drawing.Size(104, 36);
             this.BtnCapture1.TabIndex = 23;
             this.BtnCapture1.Text = "Capture R1";
-            this.BtnCapture1.UseVisualStyleBackColor = false;
+            this.BtnCapture1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BtnCapture1.UseAccentColor = false;
+            this.BtnCapture1.UseVisualStyleBackColor = true;
             this.BtnCapture1.Click += new System.EventHandler(this.BtnCapture1_Click);
             // 
             // BtnCapture2
             // 
-            this.BtnCapture2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BtnCapture2.AutoSize = false;
+            this.BtnCapture2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnCapture2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BtnCapture2.Depth = 0;
+            this.BtnCapture2.HighEmphasis = true;
+            this.BtnCapture2.Icon = null;
             this.BtnCapture2.Location = new System.Drawing.Point(128, 176);
+            this.BtnCapture2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.BtnCapture2.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnCapture2.Name = "BtnCapture2";
-            this.BtnCapture2.Size = new System.Drawing.Size(104, 23);
+            this.BtnCapture2.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BtnCapture2.Size = new System.Drawing.Size(104, 36);
             this.BtnCapture2.TabIndex = 24;
             this.BtnCapture2.Text = "Capture R2";
-            this.BtnCapture2.UseVisualStyleBackColor = false;
+            this.BtnCapture2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BtnCapture2.UseAccentColor = false;
+            this.BtnCapture2.UseVisualStyleBackColor = true;
             this.BtnCapture2.Click += new System.EventHandler(this.BtnCapture2_Click);
             // 
             // tabPage1
@@ -959,36 +1004,46 @@ namespace sgdm
             // 
             // StartApiServerBtn
             // 
-            this.StartApiServerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.StartApiServerBtn.FlatAppearance.BorderSize = 0;
-            this.StartApiServerBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(180)))), ((int)(((byte)(160)))));
-            this.StartApiServerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StartApiServerBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.StartApiServerBtn.ForeColor = System.Drawing.Color.White;
+            this.StartApiServerBtn.AutoSize = false;
+            this.StartApiServerBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StartApiServerBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.StartApiServerBtn.Depth = 0;
+            this.StartApiServerBtn.HighEmphasis = true;
+            this.StartApiServerBtn.Icon = null;
             this.StartApiServerBtn.Location = new System.Drawing.Point(20, 180);
+            this.StartApiServerBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.StartApiServerBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.StartApiServerBtn.Name = "StartApiServerBtn";
+            this.StartApiServerBtn.NoAccentTextColor = System.Drawing.Color.Empty;
             this.StartApiServerBtn.Size = new System.Drawing.Size(140, 40);
             this.StartApiServerBtn.TabIndex = 15;
             this.StartApiServerBtn.Text = "🚀 ACTIVATE API SERVER";
             this.toolTip.SetToolTip(this.StartApiServerBtn, "Activate the secure HTTP API server for biometric operations");
-            this.StartApiServerBtn.UseVisualStyleBackColor = false;
+            this.StartApiServerBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.StartApiServerBtn.UseAccentColor = true;
+            this.StartApiServerBtn.UseVisualStyleBackColor = true;
             this.StartApiServerBtn.Click += new System.EventHandler(this.StartApiServerBtn_Click);
             // 
             // StopApiServerBtn
             // 
-            this.StopApiServerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.StopApiServerBtn.FlatAppearance.BorderSize = 0;
-            this.StopApiServerBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(35)))), ((int)(((byte)(51)))));
-            this.StopApiServerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StopApiServerBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.StopApiServerBtn.ForeColor = System.Drawing.Color.White;
+            this.StopApiServerBtn.AutoSize = false;
+            this.StopApiServerBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StopApiServerBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.StopApiServerBtn.Depth = 0;
+            this.StopApiServerBtn.HighEmphasis = true;
+            this.StopApiServerBtn.Icon = null;
             this.StopApiServerBtn.Location = new System.Drawing.Point(180, 180);
+            this.StopApiServerBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.StopApiServerBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.StopApiServerBtn.Name = "StopApiServerBtn";
+            this.StopApiServerBtn.NoAccentTextColor = System.Drawing.Color.Empty;
             this.StopApiServerBtn.Size = new System.Drawing.Size(140, 40);
             this.StopApiServerBtn.TabIndex = 16;
             this.StopApiServerBtn.Text = "⏹️ DEACTIVATE SERVER";
             this.toolTip.SetToolTip(this.StopApiServerBtn, "Deactivate the secure HTTP API server");
-            this.StopApiServerBtn.UseVisualStyleBackColor = false;
+            this.StopApiServerBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.StopApiServerBtn.UseAccentColor = false;
+            this.StopApiServerBtn.UseVisualStyleBackColor = true;
             this.StopApiServerBtn.Click += new System.EventHandler(this.StopApiServerBtn_Click);
             // 
             // headerPanel
@@ -1036,7 +1091,7 @@ namespace sgdm
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 900);
             this.Controls.Add(this.statusPanel);
             this.Controls.Add(this.tabControl1);

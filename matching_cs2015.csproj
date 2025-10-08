@@ -203,6 +203,9 @@
     <Compile Include="Resources\fingerprint_icon.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MaterialSkinCompatibility.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <EmbeddedResource Include="mainform.resx">
       <DependentUpon>mainform.cs</DependentUpon>
     </EmbeddedResource>

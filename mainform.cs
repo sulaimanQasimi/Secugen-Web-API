@@ -28,9 +28,8 @@ namespace sgdm
       private Byte[] m_RegMin2;
       private Byte[] m_VrfMin;
       private SGFPMDeviceList[] m_DevList; // Used for EnumerateDevice
-
-      private System.ComponentModel.Container components = null;
-      private System.Windows.Forms.TabControl tabControl1;
+        private IContainer components;
+        private System.Windows.Forms.TabControl tabControl1;
       private System.Windows.Forms.TabPage tabPage1;
       private System.Windows.Forms.TabPage tabPage2;
       private System.Windows.Forms.TabPage tabPage3;
@@ -98,6 +97,11 @@ namespace sgdm
       private System.Windows.Forms.Label StatusBar;
       private System.Windows.Forms.Button StartApiServerBtn;
       private System.Windows.Forms.Button StopApiServerBtn;
+      private System.Windows.Forms.Panel headerPanel;
+      private System.Windows.Forms.Label titleLabel;
+      private System.Windows.Forms.Panel statusPanel;
+      private System.Windows.Forms.PictureBox logoPictureBox;
+      private System.Windows.Forms.ToolTip toolTip;
       private SimpleFingerprintApiServer apiServer;
 
       public MainForm()
@@ -127,6 +131,7 @@ namespace sgdm
       /// </summary>
       private void InitializeComponent()
       {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.CheckBoxAutoOn = new System.Windows.Forms.CheckBox();
@@ -195,6 +200,11 @@ namespace sgdm
             this.label2 = new System.Windows.Forms.Label();
             this.StartApiServerBtn = new System.Windows.Forms.Button();
             this.StopApiServerBtn = new System.Windows.Forms.Button();
+            this.headerPanel = new System.Windows.Forms.Panel();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.statusPanel = new System.Windows.Forms.Panel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GroupBoxBrightness.SuspendLayout();
@@ -212,6 +222,9 @@ namespace sgdm
             this.groupBox3.SuspendLayout();
             this.groupBoxUsbDevs.SuspendLayout();
             this.groupBoxSda.SuspendLayout();
+            this.headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
+            this.statusPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -219,14 +232,16 @@ namespace sgdm
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(4, 143);
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.tabControl1.Location = new System.Drawing.Point(20, 240);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(500, 466);
+            this.tabControl1.Size = new System.Drawing.Size(760, 500);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.CheckBoxAutoOn);
             this.tabPage2.Controls.Add(this.GroupBoxBrightness);
             this.tabPage2.Controls.Add(this.ConfigBtn);
@@ -236,16 +251,16 @@ namespace sgdm
             this.tabPage2.Controls.Add(this.pictureBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(492, 437);
+            this.tabPage2.Size = new System.Drawing.Size(752, 471);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "  Image  ";
+            this.tabPage2.Text = "📸 BIOMETRIC CAPTURE";
             // 
             // CheckBoxAutoOn
             // 
             this.CheckBoxAutoOn.Enabled = false;
-            this.CheckBoxAutoOn.Location = new System.Drawing.Point(14, 411);
+            this.CheckBoxAutoOn.Location = new System.Drawing.Point(12, 356);
             this.CheckBoxAutoOn.Name = "CheckBoxAutoOn";
-            this.CheckBoxAutoOn.Size = new System.Drawing.Size(338, 22);
+            this.CheckBoxAutoOn.Size = new System.Drawing.Size(281, 19);
             this.CheckBoxAutoOn.TabIndex = 19;
             this.CheckBoxAutoOn.Text = "Enable AutoOn Event (FDU03, FDU04, or higher)";
             this.CheckBoxAutoOn.CheckedChanged += new System.EventHandler(this.CheckBoxAutoOn_CheckedChanged);
@@ -254,9 +269,9 @@ namespace sgdm
             // 
             this.GroupBoxBrightness.Controls.Add(this.BrightnessUpDown);
             this.GroupBoxBrightness.Controls.Add(this.SetBrightnessBtn);
-            this.GroupBoxBrightness.Location = new System.Drawing.Point(336, 231);
+            this.GroupBoxBrightness.Location = new System.Drawing.Point(280, 200);
             this.GroupBoxBrightness.Name = "GroupBoxBrightness";
-            this.GroupBoxBrightness.Size = new System.Drawing.Size(144, 171);
+            this.GroupBoxBrightness.Size = new System.Drawing.Size(120, 148);
             this.GroupBoxBrightness.TabIndex = 18;
             this.GroupBoxBrightness.TabStop = false;
             this.GroupBoxBrightness.Text = "Brightness";
@@ -268,9 +283,9 @@ namespace sgdm
             0,
             0,
             0});
-            this.BrightnessUpDown.Location = new System.Drawing.Point(10, 28);
+            this.BrightnessUpDown.Location = new System.Drawing.Point(8, 24);
             this.BrightnessUpDown.Name = "BrightnessUpDown";
-            this.BrightnessUpDown.Size = new System.Drawing.Size(52, 22);
+            this.BrightnessUpDown.Size = new System.Drawing.Size(44, 23);
             this.BrightnessUpDown.TabIndex = 20;
             this.BrightnessUpDown.Value = new decimal(new int[] {
             70,
@@ -280,9 +295,9 @@ namespace sgdm
             // 
             // SetBrightnessBtn
             // 
-            this.SetBrightnessBtn.Location = new System.Drawing.Point(68, 28);
+            this.SetBrightnessBtn.Location = new System.Drawing.Point(57, 24);
             this.SetBrightnessBtn.Name = "SetBrightnessBtn";
-            this.SetBrightnessBtn.Size = new System.Drawing.Size(66, 23);
+            this.SetBrightnessBtn.Size = new System.Drawing.Size(55, 20);
             this.SetBrightnessBtn.TabIndex = 19;
             this.SetBrightnessBtn.Text = "Apply";
             this.SetBrightnessBtn.Click += new System.EventHandler(this.SetBrightnessBtn_Click);
@@ -290,9 +305,9 @@ namespace sgdm
             // ConfigBtn
             // 
             this.ConfigBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ConfigBtn.Location = new System.Drawing.Point(388, 14);
+            this.ConfigBtn.Location = new System.Drawing.Point(323, 12);
             this.ConfigBtn.Name = "ConfigBtn";
-            this.ConfigBtn.Size = new System.Drawing.Size(92, 28);
+            this.ConfigBtn.Size = new System.Drawing.Size(77, 24);
             this.ConfigBtn.TabIndex = 12;
             this.ConfigBtn.Text = "Config...";
             this.ConfigBtn.UseVisualStyleBackColor = false;
@@ -304,52 +319,52 @@ namespace sgdm
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.textImgQuality);
-            this.groupBox4.Location = new System.Drawing.Point(336, 60);
+            this.groupBox4.Location = new System.Drawing.Point(280, 52);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(144, 162);
+            this.groupBox4.Size = new System.Drawing.Size(120, 140);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "LiveCapture";
             // 
             // textTimeout
             // 
-            this.textTimeout.Location = new System.Drawing.Point(10, 92);
+            this.textTimeout.Location = new System.Drawing.Point(8, 80);
             this.textTimeout.Name = "textTimeout";
-            this.textTimeout.Size = new System.Drawing.Size(106, 22);
+            this.textTimeout.Size = new System.Drawing.Size(89, 23);
             this.textTimeout.TabIndex = 18;
             this.textTimeout.Text = "10000";
             // 
             // label16
             // 
-            this.label16.Location = new System.Drawing.Point(10, 74);
+            this.label16.Location = new System.Drawing.Point(8, 64);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(114, 28);
+            this.label16.Size = new System.Drawing.Size(95, 24);
             this.label16.TabIndex = 17;
             this.label16.Text = "Capture Timeout";
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(10, 23);
+            this.label15.Location = new System.Drawing.Point(8, 20);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(114, 19);
+            this.label15.Size = new System.Drawing.Size(95, 16);
             this.label15.TabIndex = 16;
             this.label15.Text = "Image Quality:";
             // 
             // textImgQuality
             // 
-            this.textImgQuality.Location = new System.Drawing.Point(10, 42);
+            this.textImgQuality.Location = new System.Drawing.Point(8, 36);
             this.textImgQuality.MaxLength = 3;
             this.textImgQuality.Name = "textImgQuality";
-            this.textImgQuality.Size = new System.Drawing.Size(106, 22);
+            this.textImgQuality.Size = new System.Drawing.Size(89, 23);
             this.textImgQuality.TabIndex = 15;
             this.textImgQuality.Text = "50";
             // 
             // GetLiveImageBtn
             // 
             this.GetLiveImageBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.GetLiveImageBtn.Location = new System.Drawing.Point(120, 14);
+            this.GetLiveImageBtn.Location = new System.Drawing.Point(100, 12);
             this.GetLiveImageBtn.Name = "GetLiveImageBtn";
-            this.GetLiveImageBtn.Size = new System.Drawing.Size(92, 28);
+            this.GetLiveImageBtn.Size = new System.Drawing.Size(77, 24);
             this.GetLiveImageBtn.TabIndex = 8;
             this.GetLiveImageBtn.Text = "LiveCapture";
             this.GetLiveImageBtn.UseVisualStyleBackColor = false;
@@ -358,9 +373,9 @@ namespace sgdm
             // GetImageBtn
             // 
             this.GetImageBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.GetImageBtn.Location = new System.Drawing.Point(14, 14);
+            this.GetImageBtn.Location = new System.Drawing.Point(12, 12);
             this.GetImageBtn.Name = "GetImageBtn";
-            this.GetImageBtn.Size = new System.Drawing.Size(92, 28);
+            this.GetImageBtn.Size = new System.Drawing.Size(76, 24);
             this.GetImageBtn.TabIndex = 7;
             this.GetImageBtn.Text = "Capture";
             this.GetImageBtn.UseVisualStyleBackColor = false;
@@ -370,15 +385,16 @@ namespace sgdm
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 55);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 48);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(312, 347);
+            this.pictureBox1.Size = new System.Drawing.Size(260, 300);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.BtnVerify);
             this.tabPage3.Controls.Add(this.BtnRegister);
             this.tabPage3.Controls.Add(this.groupBox6);
@@ -386,18 +402,18 @@ namespace sgdm
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(492, 437);
+            this.tabPage3.Size = new System.Drawing.Size(752, 471);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Register/Verify";
+            this.tabPage3.Text = "🔐 BIOMETRIC TEMPLATE MANAGEMENT";
             // 
             // BtnVerify
             // 
             this.BtnVerify.BackColor = System.Drawing.SystemColors.Desktop;
             this.BtnVerify.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.BtnVerify.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerify.Location = new System.Drawing.Point(336, 355);
+            this.BtnVerify.Location = new System.Drawing.Point(280, 308);
             this.BtnVerify.Name = "BtnVerify";
-            this.BtnVerify.Size = new System.Drawing.Size(130, 27);
+            this.BtnVerify.Size = new System.Drawing.Size(108, 23);
             this.BtnVerify.TabIndex = 34;
             this.BtnVerify.Text = "Verify";
             this.BtnVerify.UseVisualStyleBackColor = false;
@@ -407,9 +423,9 @@ namespace sgdm
             // 
             this.BtnRegister.BackColor = System.Drawing.SystemColors.Desktop;
             this.BtnRegister.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.BtnRegister.Location = new System.Drawing.Point(62, 355);
+            this.BtnRegister.Location = new System.Drawing.Point(52, 308);
             this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(158, 27);
+            this.BtnRegister.Size = new System.Drawing.Size(131, 23);
             this.BtnRegister.TabIndex = 33;
             this.BtnRegister.Text = "Register";
             this.BtnRegister.UseVisualStyleBackColor = false;
@@ -421,9 +437,9 @@ namespace sgdm
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Controls.Add(this.label4);
             this.groupBox6.Controls.Add(this.comboBoxSecuLevel_R);
-            this.groupBox6.Location = new System.Drawing.Point(10, 9);
+            this.groupBox6.Location = new System.Drawing.Point(8, 8);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(470, 65);
+            this.groupBox6.Size = new System.Drawing.Size(392, 56);
             this.groupBox6.TabIndex = 30;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Security Level";
@@ -440,25 +456,25 @@ namespace sgdm
             "HIGH",
             "HIGHER",
             "HIGHEST"});
-            this.comboBoxSecuLevel_V.Location = new System.Drawing.Point(326, 28);
+            this.comboBoxSecuLevel_V.Location = new System.Drawing.Point(272, 24);
             this.comboBoxSecuLevel_V.Name = "comboBoxSecuLevel_V";
-            this.comboBoxSecuLevel_V.Size = new System.Drawing.Size(134, 24);
+            this.comboBoxSecuLevel_V.Size = new System.Drawing.Size(111, 23);
             this.comboBoxSecuLevel_V.TabIndex = 24;
             this.comboBoxSecuLevel_V.Text = "NORMAL";
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(250, 28);
+            this.label14.Location = new System.Drawing.Point(208, 24);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(76, 27);
+            this.label14.Size = new System.Drawing.Size(64, 24);
             this.label14.TabIndex = 23;
             this.label14.Text = "Verification";
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(10, 28);
+            this.label4.Location = new System.Drawing.Point(8, 24);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 27);
+            this.label4.Size = new System.Drawing.Size(72, 24);
             this.label4.TabIndex = 22;
             this.label4.Text = "Registration";
             // 
@@ -474,9 +490,9 @@ namespace sgdm
             "HIGH",
             "HIGHER",
             "HIGHEST"});
-            this.comboBoxSecuLevel_R.Location = new System.Drawing.Point(96, 28);
+            this.comboBoxSecuLevel_R.Location = new System.Drawing.Point(80, 24);
             this.comboBoxSecuLevel_R.Name = "comboBoxSecuLevel_R";
-            this.comboBoxSecuLevel_R.Size = new System.Drawing.Size(134, 24);
+            this.comboBoxSecuLevel_R.Size = new System.Drawing.Size(112, 23);
             this.comboBoxSecuLevel_R.TabIndex = 21;
             this.comboBoxSecuLevel_R.Text = "NORMAL";
             // 
@@ -486,27 +502,27 @@ namespace sgdm
             this.groupBox2.Controls.Add(this.pictureBoxV1);
             this.groupBox2.Controls.Add(this.BtnCapture3);
             this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(316, 88);
+            this.groupBox2.Location = new System.Drawing.Point(263, 76);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(164, 254);
+            this.groupBox2.Size = new System.Drawing.Size(137, 220);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Verification";
             // 
             // progressBar_V1
             // 
-            this.progressBar_V1.Location = new System.Drawing.Point(20, 175);
+            this.progressBar_V1.Location = new System.Drawing.Point(17, 152);
             this.progressBar_V1.Name = "progressBar_V1";
-            this.progressBar_V1.Size = new System.Drawing.Size(124, 14);
+            this.progressBar_V1.Size = new System.Drawing.Size(103, 12);
             this.progressBar_V1.TabIndex = 31;
             // 
             // pictureBoxV1
             // 
             this.pictureBoxV1.BackColor = System.Drawing.SystemColors.Window;
             this.pictureBoxV1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxV1.Location = new System.Drawing.Point(20, 28);
+            this.pictureBoxV1.Location = new System.Drawing.Point(17, 24);
             this.pictureBoxV1.Name = "pictureBoxV1";
-            this.pictureBoxV1.Size = new System.Drawing.Size(124, 147);
+            this.pictureBoxV1.Size = new System.Drawing.Size(103, 128);
             this.pictureBoxV1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxV1.TabIndex = 29;
             this.pictureBoxV1.TabStop = false;
@@ -514,9 +530,9 @@ namespace sgdm
             // BtnCapture3
             // 
             this.BtnCapture3.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BtnCapture3.Location = new System.Drawing.Point(20, 203);
+            this.BtnCapture3.Location = new System.Drawing.Point(17, 176);
             this.BtnCapture3.Name = "BtnCapture3";
-            this.BtnCapture3.Size = new System.Drawing.Size(124, 27);
+            this.BtnCapture3.Size = new System.Drawing.Size(103, 23);
             this.BtnCapture3.TabIndex = 27;
             this.BtnCapture3.Text = "Capture V1";
             this.BtnCapture3.UseVisualStyleBackColor = false;
@@ -534,9 +550,9 @@ namespace sgdm
             "HIGH",
             "HIGHER",
             "HIGHEST"});
-            this.comboBox1.Location = new System.Drawing.Point(58, -46);
+            this.comboBox1.Location = new System.Drawing.Point(48, -40);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(106, 24);
+            this.comboBox1.Size = new System.Drawing.Size(89, 23);
             this.comboBox1.TabIndex = 30;
             this.comboBox1.Text = "NORMAL";
             // 
@@ -549,34 +565,34 @@ namespace sgdm
             this.groupBox1.Controls.Add(this.pictureBoxR1);
             this.groupBox1.Controls.Add(this.BtnCapture1);
             this.groupBox1.Controls.Add(this.BtnCapture2);
-            this.groupBox1.Location = new System.Drawing.Point(10, 88);
+            this.groupBox1.Location = new System.Drawing.Point(8, 76);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(292, 254);
+            this.groupBox1.Size = new System.Drawing.Size(244, 220);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registration";
             // 
             // progressBar_R2
             // 
-            this.progressBar_R2.Location = new System.Drawing.Point(154, 175);
+            this.progressBar_R2.Location = new System.Drawing.Point(128, 152);
             this.progressBar_R2.Name = "progressBar_R2";
-            this.progressBar_R2.Size = new System.Drawing.Size(124, 14);
+            this.progressBar_R2.Size = new System.Drawing.Size(104, 12);
             this.progressBar_R2.TabIndex = 29;
             // 
             // progressBar_R1
             // 
-            this.progressBar_R1.Location = new System.Drawing.Point(10, 175);
+            this.progressBar_R1.Location = new System.Drawing.Point(8, 152);
             this.progressBar_R1.Name = "progressBar_R1";
-            this.progressBar_R1.Size = new System.Drawing.Size(124, 14);
+            this.progressBar_R1.Size = new System.Drawing.Size(104, 12);
             this.progressBar_R1.TabIndex = 28;
             // 
             // pictureBoxR2
             // 
             this.pictureBoxR2.BackColor = System.Drawing.SystemColors.Window;
             this.pictureBoxR2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxR2.Location = new System.Drawing.Point(154, 28);
+            this.pictureBoxR2.Location = new System.Drawing.Point(128, 24);
             this.pictureBoxR2.Name = "pictureBoxR2";
-            this.pictureBoxR2.Size = new System.Drawing.Size(124, 147);
+            this.pictureBoxR2.Size = new System.Drawing.Size(104, 128);
             this.pictureBoxR2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxR2.TabIndex = 27;
             this.pictureBoxR2.TabStop = false;
@@ -585,9 +601,9 @@ namespace sgdm
             // 
             this.pictureBoxR1.BackColor = System.Drawing.SystemColors.Window;
             this.pictureBoxR1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxR1.Location = new System.Drawing.Point(10, 28);
+            this.pictureBoxR1.Location = new System.Drawing.Point(8, 24);
             this.pictureBoxR1.Name = "pictureBoxR1";
-            this.pictureBoxR1.Size = new System.Drawing.Size(124, 147);
+            this.pictureBoxR1.Size = new System.Drawing.Size(104, 128);
             this.pictureBoxR1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxR1.TabIndex = 26;
             this.pictureBoxR1.TabStop = false;
@@ -595,9 +611,9 @@ namespace sgdm
             // BtnCapture1
             // 
             this.BtnCapture1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BtnCapture1.Location = new System.Drawing.Point(10, 203);
+            this.BtnCapture1.Location = new System.Drawing.Point(8, 176);
             this.BtnCapture1.Name = "BtnCapture1";
-            this.BtnCapture1.Size = new System.Drawing.Size(124, 27);
+            this.BtnCapture1.Size = new System.Drawing.Size(104, 23);
             this.BtnCapture1.TabIndex = 23;
             this.BtnCapture1.Text = "Capture R1";
             this.BtnCapture1.UseVisualStyleBackColor = false;
@@ -606,9 +622,9 @@ namespace sgdm
             // BtnCapture2
             // 
             this.BtnCapture2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BtnCapture2.Location = new System.Drawing.Point(154, 203);
+            this.BtnCapture2.Location = new System.Drawing.Point(128, 176);
             this.BtnCapture2.Name = "BtnCapture2";
-            this.BtnCapture2.Size = new System.Drawing.Size(124, 27);
+            this.BtnCapture2.Size = new System.Drawing.Size(104, 23);
             this.BtnCapture2.TabIndex = 24;
             this.BtnCapture2.Text = "Capture R2";
             this.BtnCapture2.UseVisualStyleBackColor = false;
@@ -616,22 +632,28 @@ namespace sgdm
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.GetBtn);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(492, 437);
+            this.tabPage1.Size = new System.Drawing.Size(752, 471);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "DeviceInfo";
+            this.tabPage1.Text = "🔍 SECURE DEVICE INFORMATION";
             // 
             // GetBtn
             // 
-            this.GetBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.GetBtn.Location = new System.Drawing.Point(346, 18);
+            this.GetBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(35)))));
+            this.GetBtn.FlatAppearance.BorderSize = 0;
+            this.GetBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(55)))));
+            this.GetBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GetBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.GetBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
+            this.GetBtn.Location = new System.Drawing.Point(300, 20);
             this.GetBtn.Name = "GetBtn";
-            this.GetBtn.Size = new System.Drawing.Size(114, 28);
+            this.GetBtn.Size = new System.Drawing.Size(150, 40);
             this.GetBtn.TabIndex = 43;
-            this.GetBtn.Text = "Get";
+            this.GetBtn.Text = "🔍 RETRIEVE DEVICE INFO";
             this.GetBtn.UseVisualStyleBackColor = false;
             this.GetBtn.Click += new System.EventHandler(this.GetBtn_Click);
             // 
@@ -655,9 +677,9 @@ namespace sgdm
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Location = new System.Drawing.Point(10, 9);
+            this.groupBox3.Location = new System.Drawing.Point(8, 8);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(316, 286);
+            this.groupBox3.Size = new System.Drawing.Size(264, 248);
             this.groupBox3.TabIndex = 41;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "DeviceInfo";
@@ -665,186 +687,193 @@ namespace sgdm
             // textImageDPI
             // 
             this.textImageDPI.Enabled = false;
-            this.textImageDPI.Location = new System.Drawing.Point(116, 166);
+            this.textImageDPI.Location = new System.Drawing.Point(97, 144);
             this.textImageDPI.Name = "textImageDPI";
-            this.textImageDPI.Size = new System.Drawing.Size(182, 22);
+            this.textImageDPI.Size = new System.Drawing.Size(151, 23);
             this.textImageDPI.TabIndex = 66;
             // 
             // textImageHeight
             // 
             this.textImageHeight.Enabled = false;
-            this.textImageHeight.Location = new System.Drawing.Point(116, 138);
+            this.textImageHeight.Location = new System.Drawing.Point(97, 120);
             this.textImageHeight.Name = "textImageHeight";
-            this.textImageHeight.Size = new System.Drawing.Size(182, 22);
+            this.textImageHeight.Size = new System.Drawing.Size(151, 23);
             this.textImageHeight.TabIndex = 65;
             // 
             // textImageWidth
             // 
             this.textImageWidth.Enabled = false;
-            this.textImageWidth.Location = new System.Drawing.Point(116, 111);
+            this.textImageWidth.Location = new System.Drawing.Point(97, 96);
             this.textImageWidth.Name = "textImageWidth";
-            this.textImageWidth.Size = new System.Drawing.Size(182, 22);
+            this.textImageWidth.Size = new System.Drawing.Size(151, 23);
             this.textImageWidth.TabIndex = 64;
             // 
             // textSerialNum
             // 
             this.textSerialNum.Enabled = false;
-            this.textSerialNum.Location = new System.Drawing.Point(116, 83);
+            this.textSerialNum.Location = new System.Drawing.Point(97, 72);
             this.textSerialNum.Name = "textSerialNum";
-            this.textSerialNum.Size = new System.Drawing.Size(182, 22);
+            this.textSerialNum.Size = new System.Drawing.Size(151, 23);
             this.textSerialNum.TabIndex = 63;
             // 
             // textFWVersion
             // 
             this.textFWVersion.Enabled = false;
-            this.textFWVersion.Location = new System.Drawing.Point(116, 55);
+            this.textFWVersion.Location = new System.Drawing.Point(97, 48);
             this.textFWVersion.Name = "textFWVersion";
-            this.textFWVersion.Size = new System.Drawing.Size(182, 22);
+            this.textFWVersion.Size = new System.Drawing.Size(151, 23);
             this.textFWVersion.TabIndex = 62;
             // 
             // textDeviceID
             // 
             this.textDeviceID.Enabled = false;
-            this.textDeviceID.Location = new System.Drawing.Point(116, 28);
+            this.textDeviceID.Location = new System.Drawing.Point(97, 24);
             this.textDeviceID.Name = "textDeviceID";
-            this.textDeviceID.Size = new System.Drawing.Size(182, 22);
+            this.textDeviceID.Size = new System.Drawing.Size(151, 23);
             this.textDeviceID.TabIndex = 61;
             // 
             // textBrightness
             // 
             this.textBrightness.Enabled = false;
-            this.textBrightness.Location = new System.Drawing.Point(116, 194);
+            this.textBrightness.Location = new System.Drawing.Point(97, 168);
             this.textBrightness.Name = "textBrightness";
-            this.textBrightness.Size = new System.Drawing.Size(182, 22);
+            this.textBrightness.Size = new System.Drawing.Size(151, 23);
             this.textBrightness.TabIndex = 58;
             // 
             // textGain
             // 
             this.textGain.Enabled = false;
-            this.textGain.Location = new System.Drawing.Point(116, 249);
+            this.textGain.Location = new System.Drawing.Point(97, 216);
             this.textGain.Name = "textGain";
-            this.textGain.Size = new System.Drawing.Size(182, 22);
+            this.textGain.Size = new System.Drawing.Size(151, 23);
             this.textGain.TabIndex = 57;
             // 
             // textContrast
             // 
             this.textContrast.Enabled = false;
-            this.textContrast.Location = new System.Drawing.Point(116, 222);
+            this.textContrast.Location = new System.Drawing.Point(97, 192);
             this.textContrast.Name = "textContrast";
-            this.textContrast.Size = new System.Drawing.Size(182, 22);
+            this.textContrast.Size = new System.Drawing.Size(151, 23);
             this.textContrast.TabIndex = 56;
             // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(20, 249);
+            this.label12.Location = new System.Drawing.Point(17, 216);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(86, 19);
+            this.label12.Size = new System.Drawing.Size(71, 16);
             this.label12.TabIndex = 55;
             this.label12.Text = "Gain";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(20, 222);
+            this.label11.Location = new System.Drawing.Point(17, 192);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(86, 18);
+            this.label11.Size = new System.Drawing.Size(71, 16);
             this.label11.TabIndex = 54;
             this.label11.Text = "Contrast";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(20, 194);
+            this.label10.Location = new System.Drawing.Point(17, 168);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 18);
+            this.label10.Size = new System.Drawing.Size(71, 16);
             this.label10.TabIndex = 53;
             this.label10.Text = "Brightness";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(20, 166);
+            this.label9.Location = new System.Drawing.Point(17, 144);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(86, 19);
+            this.label9.Size = new System.Drawing.Size(71, 16);
             this.label9.TabIndex = 51;
             this.label9.Text = "Image DPI";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(20, 83);
+            this.label8.Location = new System.Drawing.Point(17, 72);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 19);
+            this.label8.Size = new System.Drawing.Size(71, 16);
             this.label8.TabIndex = 49;
             this.label8.Text = "Serial #";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(20, 55);
+            this.label7.Location = new System.Drawing.Point(17, 48);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 19);
+            this.label7.Size = new System.Drawing.Size(71, 16);
             this.label7.TabIndex = 47;
             this.label7.Text = "F/W Version";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(20, 138);
+            this.label6.Location = new System.Drawing.Point(17, 120);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 19);
+            this.label6.Size = new System.Drawing.Size(71, 16);
             this.label6.TabIndex = 45;
             this.label6.Text = "Image Height";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(20, 111);
+            this.label5.Location = new System.Drawing.Point(17, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 18);
+            this.label5.Size = new System.Drawing.Size(71, 16);
             this.label5.TabIndex = 43;
             this.label5.Text = "Image Width";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(20, 28);
+            this.label13.Location = new System.Drawing.Point(17, 24);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(86, 18);
+            this.label13.Size = new System.Drawing.Size(71, 16);
             this.label13.TabIndex = 41;
             this.label13.Text = "Device ID";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // StatusBar
             // 
-            this.StatusBar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.StatusBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.StatusBar.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.StatusBar.Location = new System.Drawing.Point(0, 786);
+            this.StatusBar.BackColor = System.Drawing.Color.Transparent;
+            this.StatusBar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StatusBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatusBar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.StatusBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
+            this.StatusBar.Location = new System.Drawing.Point(0, 0);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(729, 28);
-            this.StatusBar.TabIndex = 7;
-            this.StatusBar.Text = "Click Init Button";
+            this.StatusBar.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.StatusBar.Size = new System.Drawing.Size(800, 40);
+            this.StatusBar.TabIndex = 0;
+            this.StatusBar.Text = "🔒 SECURE SYSTEM - Ready for biometric operations";
+            this.StatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBoxUsbDevs
             // 
+            this.groupBoxUsbDevs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             this.groupBoxUsbDevs.Controls.Add(this.OpenDeviceBtn);
             this.groupBoxUsbDevs.Controls.Add(this.EnumerateBtn);
             this.groupBoxUsbDevs.Controls.Add(this.label1);
             this.groupBoxUsbDevs.Controls.Add(this.comboBoxDeviceName);
-            this.groupBoxUsbDevs.Location = new System.Drawing.Point(4, 2);
+            this.groupBoxUsbDevs.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.groupBoxUsbDevs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
+            this.groupBoxUsbDevs.Location = new System.Drawing.Point(20, 80);
             this.groupBoxUsbDevs.Name = "groupBoxUsbDevs";
-            this.groupBoxUsbDevs.Size = new System.Drawing.Size(498, 66);
+            this.groupBoxUsbDevs.Size = new System.Drawing.Size(320, 85);
             this.groupBoxUsbDevs.TabIndex = 10;
             this.groupBoxUsbDevs.TabStop = false;
-            this.groupBoxUsbDevs.Text = "USB";
+            this.groupBoxUsbDevs.Text = "🔌 SECURE USB CONNECTION";
             // 
             // OpenDeviceBtn
             // 
             this.OpenDeviceBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.OpenDeviceBtn.Location = new System.Drawing.Point(294, 22);
+            this.OpenDeviceBtn.Location = new System.Drawing.Point(245, 19);
             this.OpenDeviceBtn.Name = "OpenDeviceBtn";
-            this.OpenDeviceBtn.Size = new System.Drawing.Size(86, 28);
+            this.OpenDeviceBtn.Size = new System.Drawing.Size(72, 24);
             this.OpenDeviceBtn.TabIndex = 13;
             this.OpenDeviceBtn.Text = "Init";
             this.OpenDeviceBtn.UseVisualStyleBackColor = false;
@@ -853,9 +882,9 @@ namespace sgdm
             // EnumerateBtn
             // 
             this.EnumerateBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.EnumerateBtn.Location = new System.Drawing.Point(394, 22);
+            this.EnumerateBtn.Location = new System.Drawing.Point(328, 19);
             this.EnumerateBtn.Name = "EnumerateBtn";
-            this.EnumerateBtn.Size = new System.Drawing.Size(88, 28);
+            this.EnumerateBtn.Size = new System.Drawing.Size(74, 24);
             this.EnumerateBtn.TabIndex = 12;
             this.EnumerateBtn.Text = "Enumerate";
             this.EnumerateBtn.UseVisualStyleBackColor = false;
@@ -863,37 +892,40 @@ namespace sgdm
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(4, 22);
+            this.label1.Location = new System.Drawing.Point(3, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 28);
+            this.label1.Size = new System.Drawing.Size(74, 24);
             this.label1.TabIndex = 11;
             this.label1.Text = "Device Name";
             // 
             // comboBoxDeviceName
             // 
-            this.comboBoxDeviceName.Location = new System.Drawing.Point(98, 22);
+            this.comboBoxDeviceName.Location = new System.Drawing.Point(82, 19);
             this.comboBoxDeviceName.Name = "comboBoxDeviceName";
-            this.comboBoxDeviceName.Size = new System.Drawing.Size(182, 24);
+            this.comboBoxDeviceName.Size = new System.Drawing.Size(151, 23);
             this.comboBoxDeviceName.TabIndex = 10;
             // 
             // groupBoxSda
             // 
+            this.groupBoxSda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             this.groupBoxSda.Controls.Add(this.OpenSdaBtn);
             this.groupBoxSda.Controls.Add(this.comboBoxComPorts);
             this.groupBoxSda.Controls.Add(this.label2);
-            this.groupBoxSda.Location = new System.Drawing.Point(4, 76);
+            this.groupBoxSda.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.groupBoxSda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
+            this.groupBoxSda.Location = new System.Drawing.Point(360, 80);
             this.groupBoxSda.Name = "groupBoxSda";
-            this.groupBoxSda.Size = new System.Drawing.Size(498, 60);
+            this.groupBoxSda.Size = new System.Drawing.Size(320, 85);
             this.groupBoxSda.TabIndex = 11;
             this.groupBoxSda.TabStop = false;
-            this.groupBoxSda.Text = "SDA-Serial";
+            this.groupBoxSda.Text = "📡 SECURE SERIAL CONNECTION";
             // 
             // OpenSdaBtn
             // 
             this.OpenSdaBtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.OpenSdaBtn.Location = new System.Drawing.Point(294, 22);
+            this.OpenSdaBtn.Location = new System.Drawing.Point(245, 19);
             this.OpenSdaBtn.Name = "OpenSdaBtn";
-            this.OpenSdaBtn.Size = new System.Drawing.Size(86, 28);
+            this.OpenSdaBtn.Size = new System.Drawing.Size(72, 24);
             this.OpenSdaBtn.TabIndex = 14;
             this.OpenSdaBtn.Text = "Init";
             this.OpenSdaBtn.UseVisualStyleBackColor = false;
@@ -911,56 +943,111 @@ namespace sgdm
             "COM7",
             "COM8",
             "COM9"});
-            this.comboBoxComPorts.Location = new System.Drawing.Point(98, 21);
+            this.comboBoxComPorts.Location = new System.Drawing.Point(82, 18);
             this.comboBoxComPorts.Name = "comboBoxComPorts";
-            this.comboBoxComPorts.Size = new System.Drawing.Size(182, 24);
+            this.comboBoxComPorts.Size = new System.Drawing.Size(151, 23);
             this.comboBoxComPorts.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 25);
+            this.label2.Location = new System.Drawing.Point(8, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 16);
+            this.label2.Size = new System.Drawing.Size(31, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Port";
             // 
             // StartApiServerBtn
             // 
-            this.StartApiServerBtn.BackColor = System.Drawing.Color.Green;
+            this.StartApiServerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.StartApiServerBtn.FlatAppearance.BorderSize = 0;
+            this.StartApiServerBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(180)))), ((int)(((byte)(160)))));
+            this.StartApiServerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StartApiServerBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.StartApiServerBtn.ForeColor = System.Drawing.Color.White;
-            this.StartApiServerBtn.Location = new System.Drawing.Point(520, 2);
+            this.StartApiServerBtn.Location = new System.Drawing.Point(20, 180);
             this.StartApiServerBtn.Name = "StartApiServerBtn";
-            this.StartApiServerBtn.Size = new System.Drawing.Size(100, 30);
+            this.StartApiServerBtn.Size = new System.Drawing.Size(140, 40);
             this.StartApiServerBtn.TabIndex = 15;
-            this.StartApiServerBtn.Text = "Start API Server";
+            this.StartApiServerBtn.Text = "🚀 ACTIVATE API SERVER";
+            this.toolTip.SetToolTip(this.StartApiServerBtn, "Activate the secure HTTP API server for biometric operations");
             this.StartApiServerBtn.UseVisualStyleBackColor = false;
             this.StartApiServerBtn.Click += new System.EventHandler(this.StartApiServerBtn_Click);
             // 
             // StopApiServerBtn
             // 
-            this.StopApiServerBtn.BackColor = System.Drawing.Color.Red;
+            this.StopApiServerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.StopApiServerBtn.FlatAppearance.BorderSize = 0;
+            this.StopApiServerBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(35)))), ((int)(((byte)(51)))));
+            this.StopApiServerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StopApiServerBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.StopApiServerBtn.ForeColor = System.Drawing.Color.White;
-            this.StopApiServerBtn.Location = new System.Drawing.Point(626, 2);
+            this.StopApiServerBtn.Location = new System.Drawing.Point(180, 180);
             this.StopApiServerBtn.Name = "StopApiServerBtn";
-            this.StopApiServerBtn.Size = new System.Drawing.Size(100, 30);
+            this.StopApiServerBtn.Size = new System.Drawing.Size(140, 40);
             this.StopApiServerBtn.TabIndex = 16;
-            this.StopApiServerBtn.Text = "Stop API Server";
+            this.StopApiServerBtn.Text = "⏹️ DEACTIVATE SERVER";
+            this.toolTip.SetToolTip(this.StopApiServerBtn, "Deactivate the secure HTTP API server");
             this.StopApiServerBtn.UseVisualStyleBackColor = false;
             this.StopApiServerBtn.Click += new System.EventHandler(this.StopApiServerBtn_Click);
             // 
+            // headerPanel
+            // 
+            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(35)))));
+            this.headerPanel.Controls.Add(this.logoPictureBox);
+            this.headerPanel.Controls.Add(this.titleLabel);
+            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerPanel.Location = new System.Drawing.Point(0, 0);
+            this.headerPanel.Name = "headerPanel";
+            this.headerPanel.Size = new System.Drawing.Size(800, 65);
+            this.headerPanel.TabIndex = 17;
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.logoPictureBox.Location = new System.Drawing.Point(10, 7);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(33, 35);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPictureBox.TabIndex = 1;
+            this.logoPictureBox.TabStop = false;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
+            this.titleLabel.Location = new System.Drawing.Point(55, 20);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(350, 32);
+            this.titleLabel.TabIndex = 0;
+            this.titleLabel.Text = "🛡️ Ministry of Defense BIO";
+            // 
+            // statusPanel
+            // 
+            this.statusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
+            this.statusPanel.Controls.Add(this.StatusBar);
+            this.statusPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.statusPanel.Location = new System.Drawing.Point(0, 865);
+            this.statusPanel.Name = "statusPanel";
+            this.statusPanel.Size = new System.Drawing.Size(800, 40);
+            this.statusPanel.TabIndex = 18;
+            // 
             // MainForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
-            this.ClientSize = new System.Drawing.Size(729, 814);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.ClientSize = new System.Drawing.Size(800, 900);
+            this.Controls.Add(this.statusPanel);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBoxSda);
             this.Controls.Add(this.groupBoxUsbDevs);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.StartApiServerBtn);
             this.Controls.Add(this.StopApiServerBtn);
+            this.Controls.Add(this.headerPanel);
             this.Name = "MainForm";
-            this.Text = "Matching C# Sample";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "🛡️ Ministry of Defense BIO - Advanced Biometric System";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -982,6 +1069,10 @@ namespace sgdm
             this.groupBoxUsbDevs.ResumeLayout(false);
             this.groupBoxSda.ResumeLayout(false);
             this.groupBoxSda.PerformLayout();
+            this.headerPanel.ResumeLayout(false);
+            this.headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
+            this.statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
 	  }

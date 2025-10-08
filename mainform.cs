@@ -15,7 +15,7 @@ namespace sgdm
 	/// <summary>
 	/// Summary description for Form1.
 	/// </summary>
-   public class MainForm : MaterialForm
+   public class MainForm : System.Windows.Forms.Form
    {
       /// <summary>
       /// Required designer variable.
@@ -38,9 +38,9 @@ namespace sgdm
       private System.Windows.Forms.PictureBox pictureBox1;
       private System.Windows.Forms.GroupBox groupBox1;
       private System.Windows.Forms.GroupBox groupBox2;
-      private MaterialButton BtnCapture1;
-      private MaterialButton BtnCapture2;
-      private MaterialButton BtnCapture3;
+      private System.Windows.Forms.Button BtnCapture1;
+      private System.Windows.Forms.Button BtnCapture2;
+      private System.Windows.Forms.Button BtnCapture3;
       private System.Windows.Forms.PictureBox pictureBoxR2;
       private System.Windows.Forms.PictureBox pictureBoxV1;
       private System.Windows.Forms.PictureBox pictureBoxR1;

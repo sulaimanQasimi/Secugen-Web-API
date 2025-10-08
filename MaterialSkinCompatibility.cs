@@ -8,7 +8,7 @@ namespace MaterialSkin
     /// Compatibility layer for MaterialSkin functionality
     /// Provides basic MaterialSkin-like styling without external dependencies
     /// </summary>
-    public static class MaterialSkinManager
+    public class MaterialSkinManager
     {
         public static MaterialSkinManager Instance { get; } = new MaterialSkinManager();
         
@@ -80,8 +80,8 @@ namespace MaterialSkin.Controls
     /// </summary>
     public class MaterialButton : Button
     {
-        public bool AutoSize { get; set; } = false;
-        public AutoSizeMode AutoSizeMode { get; set; } = AutoSizeMode.GrowAndShrink;
+        public new bool AutoSize { get; set; } = false;
+        public new AutoSizeMode AutoSizeMode { get; set; } = AutoSizeMode.GrowAndShrink;
         public MaterialButtonDensity Density { get; set; } = MaterialButtonDensity.Default;
         public int Depth { get; set; } = 0;
         public bool HighEmphasis { get; set; } = true;

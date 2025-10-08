@@ -15,7 +15,7 @@ namespace sgdm
 	/// <summary>
 	/// Summary description for Form1.
 	/// </summary>
-   public class MainForm : System.Windows.Forms.Form
+   public class MainForm : MaterialForm
    {
       /// <summary>
       /// Required designer variable.
@@ -78,27 +78,27 @@ namespace sgdm
       private System.Windows.Forms.Label label15;
       private System.Windows.Forms.Label label16;
       private System.Windows.Forms.TextBox textTimeout;
-      private MaterialButton BtnRegister;
-      private MaterialButton BtnVerify;
+      private System.Windows.Forms.Button BtnRegister;
+      private System.Windows.Forms.Button BtnVerify;
       internal System.Windows.Forms.GroupBox GroupBoxBrightness;
       internal System.Windows.Forms.Button SetBrightnessBtn;
       private System.Windows.Forms.TextBox textFWVersion;
-      private MaterialButton GetLiveImageBtn;
-      private MaterialButton GetImageBtn;
+      private System.Windows.Forms.Button GetLiveImageBtn;
+      private System.Windows.Forms.Button GetImageBtn;
       internal System.Windows.Forms.NumericUpDown BrightnessUpDown;
       private System.Windows.Forms.CheckBox CheckBoxAutoOn;
       private GroupBox groupBoxUsbDevs;
-      private MaterialButton OpenDeviceBtn;
-      private MaterialButton EnumerateBtn;
+      private System.Windows.Forms.Button OpenDeviceBtn;
+      private System.Windows.Forms.Button EnumerateBtn;
       private Label label1;
       private ComboBox comboBoxDeviceName;
       private GroupBox groupBoxSda;
       private Label label2;
       private ComboBox comboBoxComPorts;
-      private MaterialButton OpenSdaBtn;
+      private System.Windows.Forms.Button OpenSdaBtn;
       private System.Windows.Forms.Label StatusBar;
-      private MaterialButton StartApiServerBtn;
-      private MaterialButton StopApiServerBtn;
+      private System.Windows.Forms.Button StartApiServerBtn;
+      private System.Windows.Forms.Button StopApiServerBtn;
       private System.Windows.Forms.Panel headerPanel;
       private System.Windows.Forms.Label titleLabel;
       private System.Windows.Forms.Panel statusPanel;
@@ -152,12 +152,12 @@ namespace sgdm
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.textImgQuality = new System.Windows.Forms.TextBox();
-            this.GetLiveImageBtn = new MaterialButton();
-            this.GetImageBtn = new MaterialButton();
+            this.GetLiveImageBtn = new System.Windows.Forms.Button();
+            this.GetImageBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.BtnVerify = new MaterialButton();
-            this.BtnRegister = new MaterialButton();
+            this.BtnVerify = new System.Windows.Forms.Button();
+            this.BtnRegister = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.comboBoxSecuLevel_V = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -166,15 +166,15 @@ namespace sgdm
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.progressBar_V1 = new System.Windows.Forms.ProgressBar();
             this.pictureBoxV1 = new System.Windows.Forms.PictureBox();
-            this.BtnCapture3 = new MaterialButton();
+            this.BtnCapture3 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.progressBar_R2 = new System.Windows.Forms.ProgressBar();
             this.progressBar_R1 = new System.Windows.Forms.ProgressBar();
             this.pictureBoxR2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxR1 = new System.Windows.Forms.PictureBox();
-            this.BtnCapture1 = new MaterialButton();
-            this.BtnCapture2 = new MaterialButton();
+            this.BtnCapture1 = new System.Windows.Forms.Button();
+            this.BtnCapture2 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GetBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -416,23 +416,17 @@ namespace sgdm
             // 
             // BtnVerify
             // 
-            this.BtnVerify.AutoSize = false;
-            this.BtnVerify.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnVerify.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.BtnVerify.Depth = 0;
-            this.BtnVerify.HighEmphasis = true;
-            this.BtnVerify.Icon = null;
+            this.BtnVerify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.BtnVerify.FlatAppearance.BorderSize = 0;
+            this.BtnVerify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVerify.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+            this.BtnVerify.ForeColor = System.Drawing.Color.White;
             this.BtnVerify.Location = new System.Drawing.Point(280, 308);
-            this.BtnVerify.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.BtnVerify.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnVerify.Name = "BtnVerify";
-            this.BtnVerify.NoAccentTextColor = System.Drawing.Color.Empty;
             this.BtnVerify.Size = new System.Drawing.Size(108, 36);
             this.BtnVerify.TabIndex = 34;
             this.BtnVerify.Text = "Verify";
-            this.BtnVerify.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.BtnVerify.UseAccentColor = true;
-            this.BtnVerify.UseVisualStyleBackColor = true;
+            this.BtnVerify.UseVisualStyleBackColor = false;
             this.BtnVerify.Click += new System.EventHandler(this.BtnVerify_Click);
             // 
             // BtnRegister
